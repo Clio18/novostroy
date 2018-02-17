@@ -4,22 +4,33 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            int a = printListOfCommands();
-            Scanner scanner = new Scanner(System.in);
-            while (scanner.nextInt() != -1) {
-                scanner.nextInt();
-                if (scanner.nextInt()>a-1){
-                    throw new Exception();
-                }else
-                if (scanner.nextInt()==1){
-                    printListOfFlats();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Даной команды не существует!");
+        ArrayList<FlatConsistent> flats = new ArrayList<>();
+        flats.add(new FlatConsistent(1, 1, 38.8, 8000.8, 2, 44.1, true));
+        flats.add(new FlatConsistent(2, 2, 45.9, 8989.7, 2, 33.3, false));
+        flats.add(new FlatConsistent(3, 3, 89.9, 89765.9, 3, 70.1, true));
+        int a = printListOfCommands();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.nextInt() != -1) {
+            scanner.nextInt();
+            if (scanner.nextInt() > a - 1) {
+                System.out.println("Введите команду из списка");
+            } else if (scanner.nextInt() == 1) {
+                printListOfFlats(flats);
+            } else if (scanner.nextInt() == 6) {
+                Scanner scanner1 = new Scanner(System.in);
+                int num = scanner1.nextInt();
+                scanner1.close();
+                shownFlatConsistent(num, flats);
+            } else if (scanner.nextInt() == 7) {
+                Scanner scanner2 = new Scanner(System.in);
+                double min = scanner2.nextDouble();
+                double max = scanner2.nextDouble();
+                scanner2.close();
+                shownRange(min, max, flats);
+            } else break;
         }
     }
+
 
     public static int printListOfCommands() {
         System.out.println("Cписок доступных команд: ");
@@ -39,18 +50,39 @@ public class Main {
         return listOfCommands.size();
     }
 
-    public static void printListOfFlats(){
+    public static void printListOfFlats(ArrayList<FlatConsistent> flats) {
         System.out.println("Список квартир в доме: ");
-        ArrayList<Flat> flats = new ArrayList<>();
-        flats.add(new Flat(1,1,38.8,8000.8));
-        flats.add(new Flat(2, 2, 45.9, 8989.7));
-        flats.add(new Flat(3, 3, 89.9, 89765.9));
-        for (Flat flat: flats) {
+        for (Flat flat : flats) {
             System.out.println("Квартира №: " + flat.number);
             System.out.println("Этаж: " + flat.floor);
             System.out.println("Общая площадь: " + flat.square);
             System.out.println("Стоимость: " + flat.value);
             System.out.println(" ");
+        }
+    }
+
+    public static void shownFlatConsistent(int number, ArrayList<FlatConsistent> flats) {
+        for (int i = 0; i < flats.size(); i++) {
+            if (flats.get(i).number == number) {
+                System.out.println("Характеристика квартиры №: " + number);
+                System.out.println("Квартира №: " + flats.get(i).number);
+                System.out.println("Этаж: " + flats.get(i).floor);
+                System.out.println("Общая площадь: " + flats.get(i).square);
+                System.out.println("Стоимость: " + flats.get(i).value);
+                System.out.println("Количество окон: " + flats.get(i).numberOfWindows);
+                System.out.println("Площадь комнаты: " + flats.get(i).squereOfRoom);
+                if (flats.get(i).free) {
+                    System.out.println("Квартира свободна");
+                } else System.out.println("Квартира продана");
+            }
+        }
+    }
+
+    public static void shownRange(double min, double max, ArrayList<FlatConsistent> flats) {
+        for (int i = 0; i < flats.size(); i++) {
+            if (flats.get(i).value >= min && flats.get(i).value <= max) {
+                System.out.println("Квартиры в этом диапазоне: " + flats.get(i).number);
+            }
         }
     }
 
