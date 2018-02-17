@@ -9,19 +9,20 @@ public class Main {
         flats.add(new FlatConsistent(2, 2, 45.9, 8989.7, 2, 33.3, false));
         flats.add(new FlatConsistent(3, 3, 89.9, 89765.9, 3, 70.1, true));
         int a = printListOfCommands();
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.nextInt() != -1) {
-            scanner.nextInt();
-            if (scanner.nextInt() > a - 1) {
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            int mark = scanner.nextInt();
+            if (mark > a - 1) {
                 System.out.println("Введите команду из списка");
-            } else if (scanner.nextInt() == 1) {
+            } else if (mark == 1) {
                 printListOfFlats(flats);
-            } else if (scanner.nextInt() == 6) {
+                break;
+            } else if (mark == 6) {
                 Scanner scanner1 = new Scanner(System.in);
                 int num = scanner1.nextInt();
                 scanner1.close();
                 shownFlatConsistent(num, flats);
-            } else if (scanner.nextInt() == 7) {
+            } else if (mark == 7) {
                 Scanner scanner2 = new Scanner(System.in);
                 double min = scanner2.nextDouble();
                 double max = scanner2.nextDouble();
@@ -81,7 +82,7 @@ public class Main {
     public static void shownRange(double min, double max, ArrayList<FlatConsistent> flats) {
         for (int i = 0; i < flats.size(); i++) {
             if (flats.get(i).value >= min && flats.get(i).value <= max) {
-                System.out.println("Квартиры в этом диапазоне: " + flats.get(i).number);
+                System.out.println("Квартиры в этом диапазоне №: " + flats.get(i).number);
             }
         }
     }
