@@ -86,4 +86,8 @@ public class Main {
         }
     }
 
+    public static void  buyTheFlat(int number){
+
+    }
+
 }
