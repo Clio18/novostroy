@@ -1,7 +1,7 @@
 public class FlatConsistent extends Flat {
-    int numberOfWindows;
-    double squereOfRoom;
-    boolean free;
+    private int numberOfWindows;
+    private double squereOfRoom;
+    private boolean free;
 
     public FlatConsistent(int number, int floor, double square, double value, int numberOfWindows, double squereOfRoom, boolean free) {
         super(number, floor, square, value);

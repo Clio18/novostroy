@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -8,27 +9,29 @@ public class Main {
         flats.add(new FlatConsistent(1, 1, 38.8, 8000.8, 2, 44.1, true));
         flats.add(new FlatConsistent(2, 2, 45.9, 8989.7, 2, 33.3, false));
         flats.add(new FlatConsistent(3, 3, 89.9, 89765.9, 3, 70.1, true));
-        int a = printListOfCommands();
-        while (true) {
-            Scanner scanner = new Scanner(System.in);
-            int mark = scanner.nextInt();
-            if (mark > a - 1) {
-                System.out.println("Введите команду из списка");
-            } else if (mark == 1) {
+
+        int maxCommandId = printListOfCommands();
+        Scanner scanner = new Scanner(System.in);
+        int commandId = 0;
+        while (commandId != -1) {
+            commandId = scanner.nextInt();
+            if (commandId == 0) {
+                printListOfCommands();
+            } else if (commandId > maxCommandId || commandId < -1) {
+                System.out.println("Неверный номер команды");
+            } else if (commandId == 1) {
                 printListOfFlats(flats);
-                break;
-            } else if (mark == 6) {
-                Scanner scanner1 = new Scanner(System.in);
-                int num = scanner1.nextInt();
-                scanner1.close();
+            } else if (commandId == 6) {
+                System.out.println("Введите номер квартиры");
+                int num = scanner.nextInt();
                 shownFlatConsistent(num, flats);
-            } else if (mark == 7) {
-                Scanner scanner2 = new Scanner(System.in);
-                double min = scanner2.nextDouble();
-                double max = scanner2.nextDouble();
-                scanner2.close();
+            } else if (commandId == 7) {
+                System.out.println("Введите нижнюю границу");
+                double min = scanner.nextDouble();
+                System.out.println("Введите верхнюю границу");
+                double max = scanner.nextDouble();
                 shownRange(min, max, flats);
-            } else break;
+            }
         }
     }
 
@@ -48,7 +51,7 @@ public class Main {
             System.out.println(listOfCommands.get(i));
         }
         System.out.println("Введите цифру: ");
-        return listOfCommands.size();
+        return listOfCommands.size() - 1;
     }
 
     public static void printListOfFlats(ArrayList<FlatConsistent> flats) {
@@ -70,9 +73,9 @@ public class Main {
                 System.out.println("Этаж: " + flats.get(i).floor);
                 System.out.println("Общая площадь: " + flats.get(i).square);
                 System.out.println("Стоимость: " + flats.get(i).value);
-                System.out.println("Количество окон: " + flats.get(i).numberOfWindows);
-                System.out.println("Площадь комнаты: " + flats.get(i).squereOfRoom);
-                if (flats.get(i).free) {
+                System.out.println("Количество окон: " + flats.get(i).getNumberOfWindows());
+                System.out.println("Площадь комнаты: " + flats.get(i).getSquereOfRoom());
+                if (flats.get(i).isFree()) {
                     System.out.println("Квартира свободна");
                 } else System.out.println("Квартира продана");
             }
@@ -80,14 +83,28 @@ public class Main {
     }
 
     public static void shownRange(double min, double max, ArrayList<FlatConsistent> flats) {
+        if (max<min){
+            System.out.println("Неверный дипазон");
+            return;
+        }
+        List<Integer> flats1 = new ArrayList<>();
         for (int i = 0; i < flats.size(); i++) {
             if (flats.get(i).value >= min && flats.get(i).value <= max) {
-                System.out.println("Квартиры в этом диапазоне №: " + flats.get(i).number);
+                flats1.add(flats.get(i).number);
             }
+        }
+        if (flats1.isEmpty()){
+            System.out.println("no flats");
+        }else {
+            System.out.print("List of flats:  ");
+            for (int i = 0; i <flats1.size() ; i++) {
+                System.out.print(flats1.get(i) + ", ");
+            }
+            System.out.println();
         }
     }
 
-    public static void  buyTheFlat(int number){
+    public static void buyTheFlat(int number) {
 
     }
 
