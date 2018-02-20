@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<FlatConsistent> flats = new ArrayList<>();
         flats.add(new FlatConsistent(1, 1, 38.8, 8000.8, 2, 44.1, true));
-        flats.add(new FlatConsistent(2, 2, 45.9, 8989.7, 2, 33.3, false));
+        flats.add(new FlatConsistent(2, 2, 45.9, 8989.7, 2, 33.3, true));
         flats.add(new FlatConsistent(3, 3, 89.9, 89765.9, 3, 70.1, true));
 
         int maxCommandId = printListOfCommands();
@@ -31,6 +31,15 @@ public class Main {
                 System.out.println("Введите верхнюю границу");
                 double max = scanner.nextDouble();
                 shownRange(min, max, flats);
+            } else if (commandId == 3) {
+                showAvailableFlats(flats);
+            } else if (commandId == 4) {
+                showNotAvailableFlats(flats);
+            } else if (commandId == 5) {
+                System.out.println("Enter the flat's number: ");
+                int num = scanner.nextInt();
+                buyTheFlat(num, flats);
+                System.out.println("You have already bought flat number: " + num);
             }
         }
     }
@@ -83,7 +92,7 @@ public class Main {
     }
 
     public static void shownRange(double min, double max, ArrayList<FlatConsistent> flats) {
-        if (max<min){
+        if (max < min) {
             System.out.println("Неверный дипазон");
             return;
         }
@@ -93,19 +102,53 @@ public class Main {
                 flats1.add(flats.get(i).number);
             }
         }
-        if (flats1.isEmpty()){
+        if (flats1.isEmpty()) {
             System.out.println("no flats");
-        }else {
+        } else {
             System.out.print("List of flats:  ");
-            for (int i = 0; i <flats1.size() ; i++) {
+            for (int i = 0; i < flats1.size(); i++) {
                 System.out.print(flats1.get(i) + ", ");
             }
             System.out.println();
         }
     }
 
-    public static void buyTheFlat(int number) {
+    public static void buyTheFlat(int number, ArrayList<FlatConsistent> flats) {
+        for (FlatConsistent flatConsistent : flats) {
+            if (flatConsistent.getNumber() == number) {
+                flatConsistent.setFree(false);
+            }
+        }
 
+    }
+
+    public static void showAvailableFlats(ArrayList<FlatConsistent> flats) {
+        ArrayList<FlatConsistent> copyFlats = new ArrayList<>();
+        for (FlatConsistent flatConsistent : flats) {
+            if (flatConsistent.isFree() == true) {
+                System.out.println("Available flat number: " + flatConsistent.number);
+            }
+            if (flatConsistent.isFree() == false) {
+                copyFlats.add(flatConsistent);
+            }
+        }
+        if (copyFlats.size() == flats.size()) {
+            System.out.println("The house hasn't any available flats");
+        }
+
+
+    }
+
+    public static void showNotAvailableFlats(ArrayList<FlatConsistent> flats) {
+        int i = 0;
+        for (FlatConsistent flatConsistent : flats) {
+            if (flatConsistent.isFree() == false) {
+                System.out.println("Sold flats number: " + flatConsistent.number);
+            } else i++;
+        }
+        if (flats.size()==i){
+            System.out.println("All flats are free!");
+        }
     }
 
 }
