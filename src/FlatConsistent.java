@@ -1,13 +1,52 @@
-public class FlatConsistent extends Flat {
+public class FlatConsistent {
+    int number;
+    int floor;
+    double square;
+    double value;
     private int numberOfWindows;
     private double squereOfRoom;
     private boolean free;
 
     public FlatConsistent(int number, int floor, double square, double value, int numberOfWindows, double squereOfRoom, boolean free) {
-        super(number, floor, square, value);
+        this.number = number;
+        this.floor = floor;
+        this.square = square;
+        this.value = value;
         this.numberOfWindows = numberOfWindows;
         this.squereOfRoom = squereOfRoom;
         this.free = free;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public double getSquare() {
+        return square;
+    }
+
+    public void setSquare(double square) {
+        this.square = square;
+    }
+
+    public double getValue() {
+        return value;
+    }
+
+    public void setValue(double value) {
+        this.value = value;
     }
 
     public int getNumberOfWindows() {

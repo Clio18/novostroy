@@ -13,37 +13,49 @@ public class Main {
         int maxCommandId = printListOfCommands();
         Scanner scanner = new Scanner(System.in);
         int commandId = 0;
+
         while (commandId != -1) {
-            commandId = scanner.nextInt();
-            if (commandId == 0) {
-                printListOfCommands();
-            } else if (commandId > maxCommandId || commandId < -1) {
-                System.out.println("Неверный номер команды");
-            } else if (commandId == 1) {
-                printListOfFlats(flats);
-            } else if (commandId == 6) {
-                System.out.println("Введите номер квартиры");
-                int num = scanner.nextInt();
-                shownFlatConsistent(num, flats);
-            } else if (commandId == 7) {
-                System.out.println("Введите нижнюю границу");
-                double min = scanner.nextDouble();
-                System.out.println("Введите верхнюю границу");
-                double max = scanner.nextDouble();
-                shownRange(min, max, flats);
-            } else if (commandId == 3) {
-                showAvailableFlats(flats);
-            } else if (commandId == 4) {
-                showNotAvailableFlats(flats);
-            } else if (commandId == 5) {
-                System.out.println("Enter the flat's number: ");
-                int num = scanner.nextInt();
-                buyTheFlat(num, flats);
-                System.out.println("You have already bought flat number: " + num);
+            //commandId = scanner.nextInt();
+            if (scanner.hasNextInt() == true) {
+                commandId = scanner.nextInt();
+                if (commandId == 0) {
+                    printListOfCommands();
+                } else if (commandId > maxCommandId || commandId < -1) {
+                    System.out.println("Неверный номер команды");
+                } else if (commandId == 1) {
+                    printListOfFlats(flats);
+                } else if (commandId == 6) {
+                    System.out.println("Введите номер квартиры");
+                    int num = scanner.nextInt();
+                    shownFlatConsistent(num, flats);
+                } else if (commandId == 7) {
+                    System.out.println("Введите нижнюю границу");
+                    if(scanner.hasNextDouble()==true) {
+                        double min = scanner.nextDouble();
+                        System.out.println("Введите верхнюю границу");
+                        if (scanner.hasNextDouble()==true) {
+                            double max = scanner.nextDouble();
+                            shownRange(min, max, flats);
+                        }
+                    }
+                } else if (commandId == 3) {
+                    showAvailableFlats(flats);
+                } else if (commandId == 4) {
+                    showNotAvailableFlats(flats);
+                } else if (commandId == 5) {
+                    System.out.println("Enter the flat's number: ");
+                    if (scanner.hasNextInt() == true) {
+                        int num = scanner.nextInt();
+                        buyTheFlat(num, flats);
+                        System.out.println("You have already bought flat number: " + num);
+                    }
+                }
+            } else {
+                scanner.next();
+                System.out.println("Irregular enter. Enter the number of command");
             }
         }
     }
-
 
     public static int printListOfCommands() {
         System.out.println("Cписок доступных команд: ");
@@ -65,7 +77,7 @@ public class Main {
 
     public static void printListOfFlats(ArrayList<FlatConsistent> flats) {
         System.out.println("Список квартир в доме: ");
-        for (Flat flat : flats) {
+        for (FlatConsistent flat : flats) {
             System.out.println("Квартира №: " + flat.number);
             System.out.println("Этаж: " + flat.floor);
             System.out.println("Общая площадь: " + flat.square);
@@ -123,16 +135,14 @@ public class Main {
     }
 
     public static void showAvailableFlats(ArrayList<FlatConsistent> flats) {
-        ArrayList<FlatConsistent> copyFlats = new ArrayList<>();
+        boolean flag = true;
         for (FlatConsistent flatConsistent : flats) {
-            if (flatConsistent.isFree() == true) {
+            if (flatConsistent.isFree()) {
                 System.out.println("Available flat number: " + flatConsistent.number);
-            }
-            if (flatConsistent.isFree() == false) {
-                copyFlats.add(flatConsistent);
+                flag = false;
             }
         }
-        if (copyFlats.size() == flats.size()) {
+        if (flag) {
             System.out.println("The house hasn't any available flats");
         }
 
@@ -140,13 +150,14 @@ public class Main {
     }
 
     public static void showNotAvailableFlats(ArrayList<FlatConsistent> flats) {
-        int i = 0;
+        boolean flag = true;
         for (FlatConsistent flatConsistent : flats) {
             if (flatConsistent.isFree() == false) {
                 System.out.println("Sold flats number: " + flatConsistent.number);
-            } else i++;
+                flag = false;
+            }
         }
-        if (flats.size()==i){
+        if (flag) {
             System.out.println("All flats are free!");
         }
     }
