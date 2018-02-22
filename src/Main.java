@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -15,11 +16,11 @@ public class Main {
                 } else if (commandId > maxCommandId || commandId < -1) {
                     System.out.println("Неверный номер команды");
                 } else if (commandId == 1) {
-                    Novostroika.printListOfFlats(Novostroika.showData());
+                    Novostroika.printListOfFlats(Novostroika.getList());
                 } else if (commandId == 6) {
                     System.out.println("Введите номер квартиры");
                     int num = scanner.nextInt();
-                    Novostroika.shownFlatConsistent(num, Novostroika.showData());
+                    Novostroika.shownFlatConsistent(num, Novostroika.getList());
                 } else if (commandId == 7) {
                     System.out.println("Введите нижнюю границу");
                     if (scanner.hasNextDouble()) {
@@ -27,18 +28,18 @@ public class Main {
                         System.out.println("Введите верхнюю границу");
                         if (scanner.hasNextDouble()) {
                             double max = scanner.nextDouble();
-                            Novostroika.shownRange(min, max, Novostroika.showData());
+                            Novostroika.shownRange(min, max, Novostroika.getList());
                         }
                     }
                 } else if (commandId == 3) {
-                    Novostroika.showAvailableFlats(Novostroika.showData());
+                    Novostroika.showAvailableFlats(Novostroika.getList());
                 } else if (commandId == 4) {
-                    Novostroika.showNotAvailableFlats(Novostroika.showData());
+                    Novostroika.showNotAvailableFlats(Novostroika.getList());
                 } else if (commandId == 5) {
                     System.out.println("Enter the flat's number: ");
                     if (scanner.hasNextInt()) {
                         int num = scanner.nextInt();
-                        Novostroika.buyTheFlat(num, Novostroika.showData());
+                        Novostroika.buyTheFlat(num, Novostroika.getList());
                         System.out.println("You have already bought flat number: " + num);
                     }
                 }
