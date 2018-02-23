@@ -7,6 +7,8 @@ public class Main {
         int maxCommandId = Novostroika.printListOfCommands();
         Scanner scanner = new Scanner(System.in);
         int commandId = 0;
+        Novostroika novostroika = new Novostroika(new ArrayList<>());
+
 
         while (commandId != -1) {
             if (scanner.hasNextInt()) {
@@ -16,11 +18,11 @@ public class Main {
                 } else if (commandId > maxCommandId || commandId < -1) {
                     System.out.println("Неверный номер команды");
                 } else if (commandId == 1) {
-                    Novostroika.printListOfFlats(Novostroika.getList());
+                    Novostroika.printListOfFlats(novostroika.list);
                 } else if (commandId == 6) {
                     System.out.println("Введите номер квартиры");
                     int num = scanner.nextInt();
-                    Novostroika.shownFlatConsistent(num, Novostroika.getList());
+                    Novostroika.shownFlatConsistent(num, novostroika.list);
                 } else if (commandId == 7) {
                     System.out.println("Введите нижнюю границу");
                     if (scanner.hasNextDouble()) {
@@ -28,18 +30,18 @@ public class Main {
                         System.out.println("Введите верхнюю границу");
                         if (scanner.hasNextDouble()) {
                             double max = scanner.nextDouble();
-                            Novostroika.shownRange(min, max, Novostroika.getList());
+                            Novostroika.shownRange(min, max, novostroika.list);
                         }
                     }
                 } else if (commandId == 3) {
-                    Novostroika.showAvailableFlats(Novostroika.getList());
+                    Novostroika.showAvailableFlats(novostroika.list);
                 } else if (commandId == 4) {
-                    Novostroika.showNotAvailableFlats(Novostroika.getList());
+                    Novostroika.showNotAvailableFlats(novostroika.list);
                 } else if (commandId == 5) {
                     System.out.println("Enter the flat's number: ");
                     if (scanner.hasNextInt()) {
                         int num = scanner.nextInt();
-                        Novostroika.buyTheFlat(num, Novostroika.getList());
+                        Novostroika.buyTheFlat(num, novostroika.list);
                         System.out.println("You have already bought flat number: " + num);
                     }
                 }

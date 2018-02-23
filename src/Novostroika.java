@@ -2,19 +2,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Novostroika {
-    public static ArrayList<FlatConsistent> list = new ArrayList<FlatConsistent>();
+    public ArrayList<FlatConsistent> list;
 
-    public static ArrayList<FlatConsistent> getList() {
+    public Novostroika(ArrayList<FlatConsistent> list) {
         list.add(new FlatConsistent(1, 1, 38.8, 8000.8, 2, 44.1, true));
         list.add(new FlatConsistent(2, 2, 45.9, 8989.7, 2, 33.3, true));
         list.add(new FlatConsistent(3, 3, 89.9, 89765.9, 3, 70.1, true));
+        this.list = list;
+    }
+
+    public ArrayList<FlatConsistent> getList() {
         return list;
     }
 
-    public static void setList(ArrayList<FlatConsistent> list) {
-        Novostroika.list = list;
+    public void setList(ArrayList<FlatConsistent> list) {
+        this.list = list;
     }
-
 
     public static int printListOfCommands() {
         System.out.println("Cписок доступных команд: ");
@@ -78,7 +81,8 @@ public class Novostroika {
         } else {
             System.out.print("List of flats:  ");
             for (int i = 0; i < flats1.size(); i++) {
-                System.out.print(flats1.get(i) + ", ");
+                System.out.print(flats1.get(i) + ",");
+
             }
             System.out.println();
         }
