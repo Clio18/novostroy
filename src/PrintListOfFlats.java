@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 
-public class PrintListOfFlats implements MainCommand {
-    Novostroika novostroika = new Novostroika(new ArrayList<FlatConsistent>());
+public class PrintListOfFlats extends ChooseCommand implements MainCommand {
     @Override
-    public void mainCommand() {
+    public void mainCommand(ArrayList <FlatConsistent> list) {
         System.out.println("Список квартир в доме: ");
-        for (FlatConsistent flat : novostroika.list) {
+        for (FlatConsistent flat : list) {
             System.out.println("Квартира №: " + flat.number);
             System.out.println("Этаж: " + flat.floor);
             System.out.println("Общая площадь: " + flat.square);
@@ -15,7 +14,17 @@ public class PrintListOfFlats implements MainCommand {
     }
 
     @Override
-    public void mainCommand(int number) {
+    public void mainCommand(int number, ArrayList <FlatConsistent> list) {
 
+    }
+
+    @Override
+    public void mainCommand(double number1, double number2, ArrayList<FlatConsistent> list) {
+
+    }
+
+    @Override
+    public int mainCommand2(ArrayList<FlatConsistent> list) {
+        return 0;
     }
 }

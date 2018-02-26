@@ -19,44 +19,21 @@ public class Novostroika {
         this.list = list;
     }
 
-    public int printListOfCommands() {
-        System.out.println("Cписок доступных команд: ");
-        ArrayList listOfCommands = new ArrayList();
-        listOfCommands.add("Список доступных команд - нажмите 0");
-        listOfCommands.add("Список квартир - нажмите 1");
-        listOfCommands.add("Список квартир на этаже - нажмите 2");
-        listOfCommands.add("Список доступных квартир - нажмите 3");
-        listOfCommands.add("Список проданых квартир - нажмите 4");
-        listOfCommands.add("Купить квартиру - нажмите 5");
-        listOfCommands.add("Детальная информация о квартире - нажмите 6");
-        listOfCommands.add("Показать квартиры в диапазоне цен - нажмите 7");
-        for (int i = 0; i < listOfCommands.size(); i++) {
-            System.out.println(listOfCommands.get(i));
-        }
-        System.out.println("Введите цифру: ");
-        return listOfCommands.size() - 1;
-    }
-
-    public void shownRange(double min, double max) {
-        if (max < min) {
-            System.out.println("Неверный дипазон");
-            return;
-        }
-        List<Integer> flats1 = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).value >= min && list.get(i).value <= max) {
-                flats1.add(list.get(i).number);
-            }
-        }
-        if (flats1.isEmpty()) {
-            System.out.println("no flats");
-        } else {
-            System.out.print("List of flats:  ");
-            for (int i = 0; i < flats1.size(); i++) {
-                System.out.print(flats1.get(i) + ",");
-
-            }
-            System.out.println();
-        }
-    }
+//    public int printListOfCommands() {
+//        System.out.println("Cписок доступных команд: ");
+//        ArrayList listOfCommands = new ArrayList();
+//        listOfCommands.add("Список доступных команд - нажмите 0");
+//        listOfCommands.add("Список квартир - нажмите 1");
+//        listOfCommands.add("Список квартир на этаже - нажмите 2");
+//        listOfCommands.add("Список доступных квартир - нажмите 3");
+//        listOfCommands.add("Список проданых квартир - нажмите 4");
+//        listOfCommands.add("Купить квартиру - нажмите 5");
+//        listOfCommands.add("Детальная информация о квартире - нажмите 6");
+//        listOfCommands.add("Показать квартиры в диапазоне цен - нажмите 7");
+//        for (int i = 0; i < listOfCommands.size(); i++) {
+//            System.out.println(listOfCommands.get(i));
+//        }
+//        System.out.println("Введите цифру: ");
+//        return listOfCommands.size() - 1;
+//    }
 }
