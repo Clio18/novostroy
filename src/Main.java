@@ -10,9 +10,11 @@ public class Main {
         PrintListOfCommands printListOfCommands = new PrintListOfCommands();
         int a = printListOfCommands.mainCommand2(novostroika.list);
 
-        while (commandId != -1) {
-            commandId = scanner.nextInt();
-            FactoryMethod.getCommand(commandId);
-        }
+        
+
+//        while (commandId != -1) {
+//            commandId = scanner.nextInt();
+//            FactoryMethod.getCommand(commandId);
+//        }
     }
 }
