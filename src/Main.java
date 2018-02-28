@@ -8,13 +8,12 @@ public class Main {
         int commandId = 0;
         Novostroika novostroika = new Novostroika(new ArrayList<>());
         PrintListOfCommands printListOfCommands = new PrintListOfCommands();
-        int a = printListOfCommands.mainCommand2(novostroika.list);
+        printListOfCommands.execute(novostroika.getList());
 
-        
-
-//        while (commandId != -1) {
-//            commandId = scanner.nextInt();
-//            FactoryMethod.getCommand(commandId);
-//        }
+        while (commandId != -1) {
+            commandId = scanner.nextInt();
+            MainCommand command = FactoryMethod.getCommand(commandId);
+            command.execute(novostroika.getList());
+        }
     }
 }

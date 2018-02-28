@@ -1,23 +1,28 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
-public class ShownRange extends ChooseCommand implements MainCommand {
-    @Override
-    public void mainCommand(ArrayList<FlatConsistent> list) {
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
-    }
-
-    @Override
-    public void mainCommand(int number, ArrayList<FlatConsistent> list) {
-
-    }
+public class ShownRange implements MainCommand {
 
     @Override
-    public void mainCommand(double min, double max, ArrayList<FlatConsistent> list) {
+    public void execute(ArrayList<FlatConsistent> list) {
+        System.out.println("Enter min border: ");
+        double min = new Scanner(System.in).nextDouble();
+        System.out.println("Enter max border: ");
+        double max = new Scanner(System.in).nextDouble();
         if (max < min) {
             System.out.println("Неверный дипазон");
             return;
         }
+//        List<Integer> flats2 = list.stream()
+//                                    .filter(f -> f.value >= min && f.value <= max)
+//                                    .map(FlatConsistent::getNumber)
+//                                    .collect(toList());
+
         List<Integer> flats1 = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).value >= min && list.get(i).value <= max) {
@@ -28,6 +33,13 @@ public class ShownRange extends ChooseCommand implements MainCommand {
             System.out.println("no flats");
         } else {
             System.out.print("List of flats:  ");
+//            flats1.stream()
+//                  .forEach(f -> System.out.println(f+","));
+//
+//            String s = flats1.stream()
+//                             .map(Object::toString)
+//                             .collect(joining(",\n"));
+            //System.out.println(s);
             for (int i = 0; i < flats1.size(); i++) {
                 System.out.print(flats1.get(i) + ",");
 
@@ -35,10 +47,5 @@ public class ShownRange extends ChooseCommand implements MainCommand {
             System.out.println();
         }
 
-    }
-
-    @Override
-    public int mainCommand2(ArrayList<FlatConsistent> list) {
-        return 0;
     }
 }

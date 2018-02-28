@@ -1,23 +1,9 @@
 import java.util.ArrayList;
 
-public class PrintListOfCommands extends ChooseCommand implements MainCommand {
-    @Override
-    public void mainCommand(ArrayList<FlatConsistent> list) {
-
-    }
+public class PrintListOfCommands implements MainCommand {
 
     @Override
-    public void mainCommand(int number, ArrayList<FlatConsistent> list) {
-
-    }
-
-    @Override
-    public void mainCommand(double number1, double number2, ArrayList<FlatConsistent> list) {
-
-    }
-
-    @Override
-    public int mainCommand2(ArrayList<FlatConsistent> list) {
+    public void execute (ArrayList<FlatConsistent> list) {
         System.out.println("Cписок доступных команд: ");
         ArrayList listOfCommands = new ArrayList();
         listOfCommands.add("Список доступных команд - нажмите 0");
@@ -32,6 +18,5 @@ public class PrintListOfCommands extends ChooseCommand implements MainCommand {
             System.out.println(listOfCommands.get(i));
         }
         System.out.println("Введите цифру: ");
-        return listOfCommands.size() - 1;
     }
 }

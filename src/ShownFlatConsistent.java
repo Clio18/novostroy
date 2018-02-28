@@ -1,14 +1,12 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class ShownFlatConsistent extends ChooseCommand  implements MainCommand {
-
-    @Override
-    public void mainCommand(ArrayList <FlatConsistent> list) {
-
-    }
+public class ShownFlatConsistent implements MainCommand {
 
     @Override
-    public void mainCommand(int number, ArrayList <FlatConsistent> list) {
+    public void execute(ArrayList<FlatConsistent> list) {
+        System.out.println("Enter number of falat: ");
+        int number = new Scanner(System.in).nextInt();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).number == number) {
                 System.out.println("Характеристика квартиры №: " + number);
@@ -25,13 +23,4 @@ public class ShownFlatConsistent extends ChooseCommand  implements MainCommand {
         }
     }
 
-    @Override
-    public void mainCommand(double number1, double number2, ArrayList<FlatConsistent> list) {
-
-    }
-
-    @Override
-    public int mainCommand2(ArrayList<FlatConsistent> list) {
-        return 0;
-    }
 }
