@@ -1,10 +1,22 @@
 package Library;
 
+import java.util.ArrayList;
+
 public class Customer {
     private String name;
     private String lastName;
     private String address;
     private String passport;
+   private ArrayList<Book> cardOfClient;
+
+    public Customer(String name, String lastName, String address, String passport, ArrayList<Book> cardOfClient) {
+        this.cardOfClient = cardOfClient;
+    }
+
+
+    public void setCardOfClient(ArrayList<Book> cardOfClient) {
+        this.cardOfClient = cardOfClient;
+    }
 
     public Customer(String name, String lastName, String address, String passport) {
         this.name = name;

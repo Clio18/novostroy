@@ -5,11 +5,17 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         Library library = new Library(new ArrayList<Book>());
-        Book book = new Book("F", "000-3-16-111111-0", 67, "LL");
-        library.addBook(library, book);
+        //AddBook addBook = new AddBook();
+        //addBook.execute(library.getListOfBooks());
         System.out.println(library.getListOfBooks());
-        System.out.println(library.findBookByName(library, "F"));
-        System.out.println(library.findBookByISBN(library, "000-3-16-111111-0"));
+        //FindBookByName findBookByName = new FindBookByName();
+        //findBookByName.execute(library.getListOfBooks());
+        //FindBooksByAuthors findBooksByAuthors = new FindBooksByAuthors();
+        //findBooksByAuthors.execute(library.getListOfBooks());
+        TakeTheBook takeTheBook = new TakeTheBook();
+        takeTheBook.execute(library.getListOfBooks());
+        System.out.println(library.getListOfBooks());
+
     }
 
 
