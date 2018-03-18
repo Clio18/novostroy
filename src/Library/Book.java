@@ -1,16 +1,24 @@
 package Library;
 
+import java.util.List;
+
 public class Book {
     private String name;
     private String ISBN;
     private int pages;
-    private String authors;
+    private List <String> authors;
+    private boolean isTaken;
 
-    public Book(String name, String ISBN, int pages, String authors) {
+    public Book() {
+
+    }
+
+    public Book(String name, String ISBN, int pages, List<String> authors, boolean isTaken) {
         this.name = name;
         this.ISBN = ISBN;
         this.pages = pages;
         this.authors = authors;
+        this.isTaken = isTaken;
     }
 
     public String getName() {
@@ -37,11 +45,19 @@ public class Book {
         this.pages = pages;
     }
 
-    public String getAuthors() {
+    public List<String> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(String authors) {
+    public void setAuthors(List<String> authors) {
         this.authors = authors;
+    }
+
+    public boolean isIstaken() {
+        return isTaken;
+    }
+
+    public void setIstaken(boolean isTaken) {
+        this.isTaken = isTaken;
     }
 }

@@ -1,28 +1,21 @@
 package Library;
 
-import java.util.ArrayList;
-
 public class Customer {
     private String name;
     private String lastName;
     private String address;
-    private String passport;
-   private ArrayList<Book> cardOfClient;
+    private String series;
+    private int passportNumber;
 
-    public Customer(String name, String lastName, String address, String passport, ArrayList<Book> cardOfClient) {
-        this.cardOfClient = cardOfClient;
-    }
-
-
-    public void setCardOfClient(ArrayList<Book> cardOfClient) {
-        this.cardOfClient = cardOfClient;
-    }
-
-    public Customer(String name, String lastName, String address, String passport) {
+    public Customer(String name, String lastName, String address, String series, int passportNumber) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
-        this.passport = passport;
+        this.series = series;
+        this.passportNumber = passportNumber;
+    }
+
+    public Customer() {
     }
 
     public String getName() {
@@ -49,11 +42,19 @@ public class Customer {
         this.address = address;
     }
 
-    public String getPassport() {
-        return passport;
+    public String getSeries() {
+        return series;
     }
 
-    public void setPassport(String passport) {
-        this.passport = passport;
+    public void setSeries(String series) {
+        this.series = series;
+    }
+
+    public int getPassportNumber() {
+        return passportNumber;
+    }
+
+    public void setPassportNumber(int passportNumber) {
+        this.passportNumber = passportNumber;
     }
 }
