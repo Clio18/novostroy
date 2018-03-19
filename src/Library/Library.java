@@ -54,17 +54,11 @@ public class Library {
         getListOfBooks().add(book);
     }
 
-    public List<Book> copyList(){
-        List<Book> list1 = new ArrayList<Book>();
-        for (int i = 0; i < getListOfBooks().size(); i++) {
-            list1.add(getListOfBooks().get(i));
-        }
-        return list1;
-    }
 
     public Book findBookByName(String name) {
         Book book1 = null;
-        for (Book book : copyList()) {
+        LibraryManager libraryManager = new LibraryManager(getListOfBooks());
+        for (Book book : libraryManager.getReservedList()) {
             if (book.getName().equals(name)) {
                 book1 = book;
             }
@@ -73,8 +67,9 @@ public class Library {
     }
 
     public Book findBookByISBN(String ISBN) {
+        LibraryManager libraryManager = new LibraryManager(getListOfBooks());
         Book book1 = null;
-        for (Book book : copyList()) {
+        for (Book book : libraryManager.getReservedList()) {
             if (book.getISBN().equals(ISBN)) {
                 book1 = book;
             }

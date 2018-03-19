@@ -7,8 +7,10 @@ public class Main {
         Library library = new Library(new ArrayList<Book>());
         System.out.println(library.getListOfBooks());
         System.out.println(library.findBookByName("A"));
+        library.findBookByName("A").setName("vv");
         System.out.println(library.getListOfBooks().get(0).getName());
-        library.findBookByName("A").setName("XX");
-        System.out.println(library.getListOfBooks().get(0).getName());
+
+
+
     }
 }
