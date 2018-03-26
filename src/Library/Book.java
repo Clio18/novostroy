@@ -10,7 +10,6 @@ public class Book {
     private boolean isTaken;
 
     public Book() {
-
     }
 
     public Book(String name, String ISBN, int pages, List<String> authors, boolean isTaken) {
@@ -20,6 +19,7 @@ public class Book {
         this.authors = authors;
         this.isTaken = isTaken;
     }
+
 
     public String getName() {
         return name;
@@ -53,7 +53,7 @@ public class Book {
         this.authors = authors;
     }
 
-    public boolean isIstaken() {
+    public boolean getisIstaken() {
         return isTaken;
     }
 
