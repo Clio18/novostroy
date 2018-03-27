@@ -1,8 +1,6 @@
 package Library;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 public class Library {
@@ -84,16 +82,25 @@ public class Library {
         return book1;
     }
 
-    public void takeBook(Customer customer, String ISBN) {
-        for (Customer customer1: customerList){
-            if(customer1.getPassportNumber()==customer.getPassportNumber()&&customer1.getSeries().equals(customer.getSeries())){
-                for (Book book:listOfBooks){
-                    if (book.getISBN().equals(ISBN)){
-                        book.setIstaken(true);
-                    }else System.out.println("already taken");
-                }
-            }else System.out.println("Customer does not exist");
+    public Map<Customer, String> takeBook(Customer customer, String ISBN) {
+//        for (Customer customer1: customerList){
+//            if(customer1.getPassportNumber()==customer.getPassportNumber()&&customer1.getSeries().equals(customer.getSeries())){
+//                for (Book book:listOfBooks){
+//                    if (book.getISBN().equals(ISBN)){
+//                        book.setIstaken(true);
+//                    }else System.out.println("already taken");
+//                }
+//            }else System.out.println("Customer does not exist");
+//        }
+
+        Map<Customer, String> map = new HashMap<Customer, String>();
+        for (Book book:listOfBooks){
+            if (book.getISBN().equals(ISBN)){
+                book.setIstaken(true);
+            }
         }
+        map.put(customer,ISBN);
+        return map;
     }
 
     public void returnBook(Customer customer, String ISBN) {
@@ -108,23 +115,39 @@ public class Library {
         }
     }
 
-    public Book findBookByAuthors (String author1, String author2){
-        int count = 0;
+    public Book findBookByAuthors (ArrayList<String> list){
         Book books = null;
-        for (Book book: listOfBooks){
-            for (String authors:book.getAuthors()){
-                if (authors.equals(author1)){
-                    count = count + 1;
-                } else if (authors.equals(author2)){
-                    count = count + 1;
+        for (Book book:listOfBooks){
+            for (String author:list){
+                for (String bookAuthor:book.getAuthors()){
+                    if(author.equals(bookAuthor)){
+                     books = book;
+                    }
                 }
-            }
-            if (count>1){
-                books = book;
             }
         }
         return books;
     }
+
+    public ArrayList makingAuthorLiist(String author){
+        ArrayList list = new ArrayList();
+        list.add(author);
+        return list;
+    }
+    public ArrayList makingAuthorLiist(String author, String author1){
+        ArrayList list = new ArrayList();
+        list.add(author);
+        list.add(author1);
+        return list;
+    }
+    public ArrayList makingAuthorLiist(String author, String author1, String author2){
+        ArrayList list = new ArrayList();
+        list.add(author);
+        list.add(author1);
+        list.add(author2);
+        return list;
+    }
+
 
 
 }

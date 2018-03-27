@@ -15,7 +15,9 @@ public class Main {
         System.out.println(library.findBookByISBN("1-2-34").getisIstaken());
         library.returnBook(new Customer("Ivan", "Ivanov", "Kiev, Svobody st., 1/1", "MV", 123456), "1-2-34");
         System.out.println(library.findBookByISBN("1-2-34").getisIstaken());
-        System.out.println(library.findBookByAuthors("AAa", "BBb"));
+
+        System.out.println(library.findBookByAuthors(library.makingAuthorLiist("AA")));
+
 
 
 
