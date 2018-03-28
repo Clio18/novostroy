@@ -47,7 +47,13 @@ public class Customer {
     }
 
     public void setSeries(String series) {
-        this.series = series;
+       try {
+           if(series!=null&&series.toCharArray().length==2) {
+               this.series = series;
+           }else throw new LibraryException();
+       } catch (LibraryException libraryException){
+           System.out.println("Wrong serie");
+       }
     }
 
     public int getPassportNumber() {

@@ -6,7 +6,7 @@ public class Book {
     private String name;
     private String ISBN;
     private int pages;
-    private List <String> authors;
+    private List<String> authors;
     private boolean isTaken;
 
     public Book() {
@@ -26,7 +26,13 @@ public class Book {
     }
 
     public void setName(String name) {
-        this.name = name;
+        try {
+            if (name != null && name.toCharArray().length < 100) {
+                this.name = name;
+            } else throw new LibraryException();
+        } catch (LibraryException libraryException) {
+            System.out.println("Wrong name");
+        }
     }
 
     public String getISBN() {
@@ -34,7 +40,15 @@ public class Book {
     }
 
     public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+        try {
+
+            if (ISBN != null && ISBN.toCharArray().length == 6) {
+                this.ISBN = ISBN;
+            } else throw new LibraryException();
+
+        } catch (LibraryException libraryException) {
+            System.out.println("Wrong ISBN");
+        }
     }
 
     public int getPages() {
@@ -42,7 +56,13 @@ public class Book {
     }
 
     public void setPages(int pages) {
-        this.pages = pages;
+        try {
+            if(pages>0) {
+                this.pages = pages;
+            }else throw new LibraryException();
+        } catch (LibraryException libraryException){
+            System.out.println("Wrong pages");
+        }
     }
 
     public List<String> getAuthors() {

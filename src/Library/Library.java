@@ -94,20 +94,20 @@ public class Library {
 //        }
 
         Map<Customer, String> map = new HashMap<Customer, String>();
-        for (Book book:listOfBooks){
-            if (book.getISBN().equals(ISBN)){
+        for (Book book : listOfBooks) {
+            if (book.getISBN().equals(ISBN)) {
                 book.setIstaken(true);
             }
         }
-        map.put(customer,ISBN);
+        map.put(customer, ISBN);
         return map;
     }
 
     public void returnBook(Customer customer, String ISBN) {
-        for (Customer customer1: customerList){
-            if(customer1.getPassportNumber()==customer.getPassportNumber()&&customer1.getSeries().equals(customer.getSeries())){
-                for (Book book:listOfBooks){
-                    if (book.getISBN().equals(ISBN)){
+        for (Customer customer1 : customerList) {
+            if (customer1.getPassportNumber() == customer.getPassportNumber() && customer1.getSeries().equals(customer.getSeries())) {
+                for (Book book : listOfBooks) {
+                    if (book.getISBN().equals(ISBN)) {
                         book.setIstaken(false);
                     }
                 }
@@ -115,13 +115,13 @@ public class Library {
         }
     }
 
-    public Book findBookByAuthors (ArrayList<String> list){
+    public Book findBookByAuthors(ArrayList<String> list) {
         Book books = null;
-        for (Book book:listOfBooks){
-            for (String author:list){
-                for (String bookAuthor:book.getAuthors()){
-                    if(author.equals(bookAuthor)){
-                     books = book;
+        for (Book book : listOfBooks) {
+            for (String author : list) {
+                for (String bookAuthor : book.getAuthors()) {
+                    if (author.equals(bookAuthor)) {
+                        books = book;
                     }
                 }
             }
@@ -129,25 +129,26 @@ public class Library {
         return books;
     }
 
-    public ArrayList makingAuthorLiist(String author){
+    public ArrayList makingAuthorLiist(String author) {
         ArrayList list = new ArrayList();
         list.add(author);
         return list;
     }
-    public ArrayList makingAuthorLiist(String author, String author1){
+
+    public ArrayList makingAuthorLiist(String author, String author1) {
         ArrayList list = new ArrayList();
         list.add(author);
         list.add(author1);
         return list;
     }
-    public ArrayList makingAuthorLiist(String author, String author1, String author2){
+
+    public ArrayList makingAuthorLiist(String author, String author1, String author2) {
         ArrayList list = new ArrayList();
         list.add(author);
         list.add(author1);
         list.add(author2);
         return list;
     }
-
 
 
 }
