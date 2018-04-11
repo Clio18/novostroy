@@ -26,13 +26,7 @@ public class Book {
     }
 
     public void setName(String name) {
-        try {
-            if (name != null && name.toCharArray().length < 100) {
                 this.name = name;
-            } else throw new LibraryException();
-        } catch (LibraryException libraryException) {
-            System.out.println("Wrong name");
-        }
     }
 
     public String getISBN() {
@@ -40,15 +34,7 @@ public class Book {
     }
 
     public void setISBN(String ISBN) {
-        try {
-
-            if (ISBN != null && ISBN.toCharArray().length == 6) {
                 this.ISBN = ISBN;
-            } else throw new LibraryException();
-
-        } catch (LibraryException libraryException) {
-            System.out.println("Wrong ISBN");
-        }
     }
 
     public int getPages() {
@@ -56,13 +42,7 @@ public class Book {
     }
 
     public void setPages(int pages) {
-        try {
-            if(pages>0) {
                 this.pages = pages;
-            }else throw new LibraryException();
-        } catch (LibraryException libraryException){
-            System.out.println("Wrong pages");
-        }
     }
 
     public List<String> getAuthors() {

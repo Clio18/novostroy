@@ -8,18 +8,25 @@ public class Library {
     private List<Customer> customerList;
 
     public Library(List<Book> listOfBooks, List<Customer> customerList) {
+        ValidLibrary validLibrary = new ValidLibrary();
+
         Book book = new Book();
-        book.setName("A");
+        book.setName("Aa");
         book.setISBN("1-2-34");
         book.setPages(10);
         book.setAuthors(Arrays.asList("AA", "BB", "CC"));
-        listOfBooks.add(book);
+        if (validLibrary.Valid(book) != null) {
+            listOfBooks.add(validLibrary.Valid(book));
+        }
+
         Book book1 = new Book();
         book1.setName("B");
         book1.setISBN("2-3-45");
         book1.setPages(100);
         book1.setAuthors(Arrays.asList("AAa", "BBb", "CCc"));
-        listOfBooks.add(book1);
+        if (validLibrary.Valid(book1) != null) {
+            listOfBooks.add(validLibrary.Valid(book1));
+        }
 
         Customer customer = new Customer();
         customer.setName("Ivan");
@@ -27,7 +34,10 @@ public class Library {
         customer.setAddress("Kiev, Svobody st., 1/1");
         customer.setSeries("MV");
         customer.setPassportNumber(123456);
-        customerList.add(customer);
+        if (validLibrary.Valid(customer) != null) {
+            customerList.add(validLibrary.Valid(customer));
+        }
+
         Customer customer1 = new Customer();
         customer1.setName("Boris");
         customer1.setLastName("Borisov");
@@ -35,8 +45,8 @@ public class Library {
         customer1.setSeries("KV");
         customer1.setPassportNumber(789123);
         customerList.add(customer1);
-        this.customerList = customerList;
 
+        this.customerList = customerList;
         this.listOfBooks = listOfBooks;
     }
 
