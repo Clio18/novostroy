@@ -11,7 +11,7 @@ public class Library {
         ValidLibrary validLibrary = new ValidLibrary();
 
         Book book = new Book();
-        book.setName("Aa");
+        book.setName("Aaf");
         book.setISBN("1-2-34");
         book.setPages(10);
         book.setAuthors(Arrays.asList("AA", "BB", "CC"));
