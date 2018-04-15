@@ -1,21 +1,29 @@
 package Library;
 
-public class ValidLibrary implements Validation {
+public class ValidBook implements Validation {
     @Override
-    public Book Valid(Book book) {
+    public Book valid(Book book) {
         try {
-            if (book.getName().toCharArray().length > 10 || book.getISBN().toCharArray().length != 6) {
+            if (book.getName().toCharArray().length > 10) {
                 throw new LibraryException();
             }
         } catch (LibraryException e) {
-            System.out.println("Error");
+            System.out.println("Error: the length of book's name long than 10");
+            return null;
+        }
+        try {
+            if (book.getISBN().toCharArray().length != 6) {
+                throw new LibraryException();
+            }
+        } catch (LibraryException e) {
+            System.out.println("Error: the length of book's ISBN must consist 6 digits");
             return null;
         }
         return book;
     }
 
     @Override
-    public Customer Valid(Customer customer) {
+    public Customer valid(Customer customer) {
         try {
             char firstLetter = customer.getSeries().toCharArray()[0];
             char secondLetter = customer.getSeries().toCharArray()[0];
@@ -29,7 +37,7 @@ public class ValidLibrary implements Validation {
                 throw new LibraryException();
             }
         } catch (LibraryException e) {
-            System.out.println("Error");
+            System.out.println("Error: passport series must consist of 2 letters in uppercase");
             return null;
         }
         return customer;

@@ -8,49 +8,11 @@ public class Library {
     private List<Customer> customerList;
 
     public Library(List<Book> listOfBooks, List<Customer> customerList) {
-        ValidLibrary validLibrary = new ValidLibrary();
-
-        Book book = new Book();
-        book.setName("Aaf");
-        book.setISBN("1-2-34");
-        book.setPages(10);
-        book.setAuthors(Arrays.asList("AA", "BB", "CC"));
-        if (validLibrary.Valid(book) != null) {
-            listOfBooks.add(validLibrary.Valid(book));
-        }
-
-        Book book1 = new Book();
-        book1.setName("B");
-        book1.setISBN("2-3-45");
-        book1.setPages(100);
-        book1.setAuthors(Arrays.asList("AAa", "BBb", "CCc"));
-        if (validLibrary.Valid(book1) != null) {
-            listOfBooks.add(validLibrary.Valid(book1));
-        }
-
-        Customer customer = new Customer();
-        customer.setName("Ivan");
-        customer.setLastName("Ivanov");
-        customer.setAddress("Kiev, Svobody st., 1/1");
-        customer.setSeries("MV");
-        customer.setPassportNumber(123456);
-        if (validLibrary.Valid(customer) != null) {
-            customerList.add(validLibrary.Valid(customer));
-        }
-
-        Customer customer1 = new Customer();
-        customer1.setName("Boris");
-        customer1.setLastName("Borisov");
-        customer1.setAddress("Kharkiv, Sumskaya st., 11/12");
-        customer1.setSeries("KV");
-        customer1.setPassportNumber(789123);
-        customerList.add(customer1);
-
         this.customerList = customerList;
         this.listOfBooks = listOfBooks;
     }
 
-    public List<Book> getListOfBooks() {
+    private List<Book> getListOfBooks() {
         return listOfBooks;
     }
 
@@ -67,29 +29,33 @@ public class Library {
     }
 
     public void addBook(Book book) {
-        getListOfBooks().add(book);
+        ValidBook validBook = new ValidBook();
+        if (validBook.valid(book)!= null) {
+            getListOfBooks().add(book);
+        }
     }
 
 
     public Book findBookByName(String name) {
-        Book book1 = null;
-
+        Book isBook = null;
         for (Book book : listOfBooks) {
             if (book.getName().equals(name)) {
-                book1 = book;
+                Book book1 = new Book(book.getName(), book.getISBN(), book.getPages(), book.getAuthors(), book.getisIstaken());
+                isBook = book1;
             }
         }
-        return book1;
+        return isBook;
     }
 
     public Book findBookByISBN(String ISBN) {
-        Book book1 = null;
+        Book isBook = null;
         for (Book book : listOfBooks) {
             if (book.getISBN().equals(ISBN)) {
-                book1 = book;
+                Book book1 = new Book(book.getName(), book.getISBN(), book.getPages(), book.getAuthors(), book.getisIstaken());
+                isBook = book1;
             }
         }
-        return book1;
+        return isBook;
     }
 
     public Map<Customer, String> takeBook(Customer customer, String ISBN) {
